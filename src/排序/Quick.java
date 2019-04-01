@@ -1,25 +1,35 @@
+package 排序;
+
 /**
  * Created by valar on 2019/3/30.
  */
-public class Shell {
+public class Quick {
     public static void main(String[] args) {
         Comparable[] a = {2,1,45,67,8,4,8,5,};
-        sort(a);
+        sort(a,0,a.length-1);
         show(a);
     }
+    public static int partition(Comparable[] a,int lo,int hi){
+        int i = lo,j = hi +1;
+        Comparable v = a[lo];
+        while (true){
+            while (less(a[++i],v))
+                if (i == hi) break;
+            while (less(v,a[--j]))
+                if (j == lo) break;
+            if(i >= j) break;
+            exch(a,i,j);
 
-    public static void sort(Comparable[] a) {
-        int N = a.length;
-        int h =1;
-        while (h < N/3)
-            h = 3*h +1;
-        while (h >= 1 ){
-            for(int i = h;i < N; i++){
-                for (int j = i; j >= h && less(a[j],a[j - h]);j -= h)
-                    exch(a,j,j-h);
-            }
-            h = h/3;
         }
+        exch(a,lo,j);
+        return j;
+    }
+    public static void sort(Comparable[] a,int lo,int hi) {
+        if(hi <= lo)
+        return;
+        int j = partition(a,lo,hi);
+        sort(a,lo,j-1);
+        sort(a,j+1,hi);
     }
 
     private static boolean less(Comparable v, Comparable w) {
