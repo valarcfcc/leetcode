@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.Map;
+
 /**
  * @Auther: valarcfcc
  * @Date: 2020/8/4 23:01
@@ -16,4 +18,10 @@ public class Utils {
             System.out.print(e + " ");
         }
     }
+    public static void mapOut(Map<String, String> map){
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+        }
+    }
+
 }
